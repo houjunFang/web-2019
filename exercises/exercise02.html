@@ -3,43 +3,50 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>使用v-on绑定自定义事件 - Vue Test</title>
+		<title>组件及Vue实例的基本用法 - Vue Test</title>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
 	</head>
 	
 	<body>
 		<div id="app">
-			<h3>{{total}}</h3>
-			<button-counter v-on:increment="incrementTotal"></button-counter>
-			<button-counter v-on:increment="incrementTotal"></button-counter>
+			<input v-model="newTodoText"
+				   @keyup.enter="addNewTodo"
+				   placeholder="Add a new todo" />
+			<ul>
+				<li is="todo-item"
+					v-for="(item, index) in items"
+					:key="item.id"
+					:title="item.title"
+					@remove="items.splice(index, 1)"></li>
+			</ul>
 		</div>
 		
 		<script type="text/javascript">
-			//注册组件，在初始化Vue实例之前
-			Vue.component("button-counter", {
-				template: "<button v-on:click='incrementCounter'>{{counter}}</button>",
-				data: function() { //组件中的data必须为函数形式
-					return {
-						counter: 0
-					}
-				},
-				methods: {
-					incrementCounter: function() {
-						this.counter += 1;
-						this.$emit("increment"); //触发自定义的increment事件
-					}
-				}
+			//自定义组件
+			Vue.component("todo-item", {
+				props: ["title"],
+				template: "<li>{{title}} <button @click=\"$emit(\'remove\')\">X</button></li>"
 			});
 			
 			//初始化Vue实例
 			var vm = new Vue({
 				el: "#app",
 				data: {
-					total: 0
+					newTodoText: "",
+					items: [
+						{id:1, title:"Vue.js"},
+						{id:2, title:"Python"},
+						{id:3, title:"ES6"}
+					],
+					nextItemId: 4
 				},
 				methods: {
-					incrementTotal: function() {
-						this.total += 1;
+					addNewTodo: function() {
+						this.items.push({
+							id: this.nextItemId++,
+							title: this.newTodoText
+						});
+						this.newTodoText = "";
 					}
 				}
 			});
