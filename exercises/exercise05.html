@@ -10,7 +10,7 @@
 	<body>
 		<div id="app">
 			<h3>姓名：{{ fullName }}</h3>
-			<h3>身高：{{ weightM }} 米</h3>
+			<h3>身高：{{ heightM }} 米</h3>
 		</div>
 		
 		<script type="text/javascript">			
@@ -22,19 +22,19 @@
 				data: {
 					firstName: "Michael",
 					lastName: "Jordan",
-					weightCM: 198
+					heightCM: 198
 				},
 				computed: {
 					fullName: function() {
 						//this指向当前Vue实例
 						return this.firstName + ' ' + this.lastName;
 					},
-					weightM: {
+					heightM: {
 						set: function(newVal) {
-							this.weightCM = newVal * 100;
+							this.heightCM = newVal * 100;
 						},
 						get: function() {
-							return (this.weightCM / 100).toFixed(2);
+							return (this.heightCM / 100).toFixed(2);
 						}
 					}
 				}
