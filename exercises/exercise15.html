@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>路由的基本使用 - Vue Test</title>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script type="text/javascript" src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+		<style type="text/css">
+			* {margin:0;padding:0;}
+			.links {margin:15px;}
+			.links li {list-style:none;display:inline-block;margin-right:15px;}
+			.links li a {padding:5px 15px;color:#fff;background-color:yellowgreen;}
+			.container {margin:15px;min-height:400px;border:1px solid #ccc;}
+		</style>
+	</head>
+	
+	<body>
+		<div id="app">
+			<ul class="links">
+				<li>
+					<router-link to="/home">Home</router-link>
+				</li>
+				<li>
+					<router-link to="/product">Product</router-link>
+				</li>
+			</ul>
+			
+			<div class="container">
+				<router-view></router-view>
+			</div>
+		</div>
+		
+		<script type="text/javascript">			
+			/**
+			 * 路由管理：利用hash变化控制组件的切换
+			 * router实例方法push()、replace()、go()主要是模拟window.history下的pushState()、replaceState()、go()
+			 * 并确保router在不同模式（hash、history）下的表现一致
+			 */
+			
+			//组件注册，可以使用组件构造器Vue.extend()或组件对象
+			var Home = {
+				template: "<h3>This is Home page.</h3>"
+			};
+			var Product = {
+				//template中有且只有一个根元素
+				template: " <div class='sub-view'> \
+								<h3>This is Product page.</h3> \
+								<ul class='links'> \
+									<li><router-link to='/product/list'>List</router-link></li> \
+									<li><router-link to='/product/detail'>Detail</router-link></li> \
+								</ul> \
+								<div class='container'> \
+									<router-view><router-view> \
+								</div> \
+							</div>"
+			};
+			var List = {
+				template: "<h3>This is Product/List page.</h3>"
+			};
+			var Detail = {
+				template: "<h3>This is Product/Detail page.</h3>"
+			};
+			
+			//初始化VueRouter实例
+			const router = new VueRouter({
+				routes: [
+					{path: "/home", component: Home},
+					{
+						path: "/product",
+						component: Product,
+						children: [ //嵌套路由
+							{path: "list", component: List},
+							{path: "detail", component: Detail}
+						]
+					}
+				]
+			});
+			
+			//初始化Vue实例，并启动路由
+			const app = new Vue({
+				router: router
+			}).$mount("#app");
+		</script>
+	</body>
+</html>
