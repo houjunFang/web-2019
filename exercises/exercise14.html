@@ -30,7 +30,7 @@
 			/**
 			 * 动态组件：即多个组件使用同一挂载点，根据条件来切换不同的组件，常用于路由控制和Tab切换
 			 * <keep-alive>标签将切换出去的组件保留在内存中，避免重新渲染
-			 * activated: 组件激活时调用，常用于动态组件切换
+			 * activated: 钩子函数，组件激活时调用，常用于动态组件切换
 			 */
 			
 			//初始化Vue实例
@@ -58,7 +58,7 @@
 						},
 						activated: function() { //钩子函数
 							var that = this;
-							//默认ajax请求
+							//模拟ajax请求
 							setTimeout(function() {
 								that.items = ['This', 'is', 'list', 'tab'];
 							}, 1000);
