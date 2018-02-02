@@ -5,6 +5,13 @@
 ## Build Setup
 
 ``` bash
+# install vue-cli
+npm install -g vue-cli
+
+vue init webpack my-project
+
+cd my-project
+
 # install dependencies
 npm install
 
