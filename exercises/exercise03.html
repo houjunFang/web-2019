@@ -18,7 +18,7 @@
 			//注册组件，在初始化Vue实例之前
 			Vue.component("button-counter", {
 				template: "<button v-on:click='incrementCounter'>{{counter}}</button>",
-				data: function() { //组件中的data必须为函数形式
+				data: function() { //组件中的data必须为函数形式，避免多个组件实例共用一个data对象
 					return {
 						counter: 0
 					}
