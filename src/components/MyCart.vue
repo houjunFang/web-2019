@@ -7,7 +7,7 @@
 		name: "MyCart",
 		data() {
 			return {
-				msg: "This is my cart page."
+				msg: "Coming soon ..."
 			}
 		}
 	}
