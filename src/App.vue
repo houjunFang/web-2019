@@ -24,6 +24,5 @@
 		bottom:15px;
 		left:10%;
 		right:10%;
-		border:1px solid #ccc;
 	}
 </style>
