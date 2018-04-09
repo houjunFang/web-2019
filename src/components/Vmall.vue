@@ -1,7 +1,6 @@
 <template>
 	<div class="pure-g">
-	    <div class="pure-u-1-4" 
-	    		v-for="product in products" :key="product.id">
+	    <div class="pure-u-1-4" v-for="product in products" :key="product.id">
 	    	<div class="panel">
 	    		<img :src="product.pic" />
 	    		<h3>{{product.name}}</h3>
@@ -27,10 +26,12 @@
 		components: {BuyBtn},
 		methods: {
 			addToCart: function() {
-				console.log("Add to cart ...");
+				//console.log("Add to cart ...");
+				this.vHandler.$emit("addToCart");
 			},
 			removeFromCart: function() {
-				console.log("Remove from cart ...");
+				//console.log("Remove from cart ...");
+				this.vHandler.$emit("removeFromCart");
 			}
 		},
 		beforeMount: function() {

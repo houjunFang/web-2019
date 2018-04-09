@@ -5,7 +5,7 @@ import router from './router';
 import VueResource from 'vue-resource';
 import App from './App';
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 Vue.use(VueResource);
 
@@ -16,6 +16,9 @@ Vue.filter("currency", function(val) {
 	var currency = num.toString().replace(/^(\d+)((\.\d+)?)$/,function(s,s1,s2){return s1.replace(reg,"$&,")+s2;}); //加千分位
 	return "￥"+currency;
 });
+
+/* 使用一个空的Vue实例来处理简单的组件之间的通信 */
+Vue.prototype.vHandler = new Vue();
 
 /* eslint-disable no-new */
 new Vue({
