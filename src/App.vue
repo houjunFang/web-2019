@@ -2,7 +2,7 @@
   <div id="app">
     <menus></menus>
     <div id="view">
-    	<router-view></router-view>
+    		<router-view></router-view>
     </div>
   </div>
 </template>

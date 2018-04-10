@@ -1,16 +1,19 @@
 <template>
+	<keep-alive>
 	<div class="pure-g">
 	    <div class="pure-u-1-4" v-for="product in products" :key="product.id">
 	    	<div class="panel">
-	    		<img :src="product.pic" />
+	    		<img :src="product.pic" class="pure-img" />
 	    		<h3>{{product.name}}</h3>
 	    		<p>{{product.price | currency}}</p>
 	    		<div class="panel-btn">
-	    			<buy-btn @addToCart="addToCart" @removeFromCart="removeFromCart"></buy-btn>
+	    			<buy-btn @addToCart="addToCart(product.id)" 
+	    				@removeFromCart="removeFromCart(product.id)"></buy-btn>
 	    		</div>
 	    	</div>
 	    </div>
 	</div>
+	</keep-alive>
 </template>
 
 <script>
@@ -20,18 +23,18 @@
 		name: "Vmall",
 		data() {
 			return {
-				products: []
+				products: [] //商品数组
 			}
 		},
 		components: {BuyBtn},
 		methods: {
-			addToCart: function() {
+			addToCart: function(productId) {
 				//console.log("Add to cart ...");
-				this.vHandler.$emit("addToCart");
+				this.vHandler.$emit("addToCart", productId);
 			},
-			removeFromCart: function() {
+			removeFromCart: function(productId) {
 				//console.log("Remove from cart ...");
-				this.vHandler.$emit("removeFromCart");
+				this.vHandler.$emit("removeFromCart", productId);
 			}
 		},
 		beforeMount: function() {

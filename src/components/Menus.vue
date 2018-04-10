@@ -36,14 +36,34 @@
 				this.activeId = menuId;
 			}
 		},
-		mounted: function() { //生命周期函数，监听"购物车"事件
+		beforeMount: function() { //生命周期函数，监听"购物车"事件
 			var that = this;
-			this.vHandler.$on("addToCart", function() {
-				that.cartCount++;
+			that.vHandler.$on("addToCart", function(productId) {
+				that.vHandler.productIds.push(productId);
+				that.cartCount = that.vHandler.productIds.length;
 			});
-			this.vHandler.$on("removeFromCart", function() {
-				that.cartCount--;
+			that.vHandler.$on("removeFromCart", function(productId) {
+				//删除数组中的指定元素
+				for(var i=0;i<that.vHandler.productIds.length;i++) {
+					if(that.vHandler.productIds[i] == productId) {
+						that.vHandler.productIds.splice(i, 1);
+						break;
+					}
+				}
+				that.cartCount = that.vHandler.productIds.length;
 			});
+		},
+		mounted: function() { //生命周期函数，设置当前选择菜单
+			var currentPath = window.location.hash;
+			var path = currentPath.split("#")[1];
+			if(path.length > 1) { //判断不是根路径
+				for(var i=0;i<this.menus.length;i++) {
+					if(path == this.menus[i].path) {
+						this.activeId = this.menus[i].id;
+						break;
+					}
+				}
+			}
 		}
 	}
 </script>

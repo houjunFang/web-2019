@@ -18,7 +18,14 @@ Vue.filter("currency", function(val) {
 });
 
 /* 使用一个空的Vue实例来处理简单的组件之间的通信 */
-Vue.prototype.vHandler = new Vue();
+/* 该对象在所有组件中可用 */
+Vue.prototype.vHandler = new Vue({
+	data() {
+		return {
+			productIds: []
+		}
+	}
+});
 
 /* eslint-disable no-new */
 new Vue({
