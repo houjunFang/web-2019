@@ -3,6 +3,7 @@
 		<thead>
 			<tr>
 				<th>#</th>
+				<th>商品图片</th>
 				<th>商品名称</th>
 				<th>商品价格</th>
 				<th>操作</th>
@@ -10,6 +11,7 @@
 		</thead>
 		<tbody>
 			<tr v-for="(product, index) in productArr">
+				<td>{{index+1}}</td>
 				<td><img :src="product.pic" class="pure-img" /></td>
 				<td>{{product.name}}</td>
 				<td>{{product.price}}</td>
@@ -19,7 +21,7 @@
 				</td>
 			</tr>
 			<tr class="count-row">
-				<td colspan="2">合计：</td>
+				<td colspan="3">合计：</td>
 				<td colspan="2">{{priceTotal}}</td>
 			</tr>
 		</tbody>
@@ -52,7 +54,7 @@
 			}
 		},
 		beforeMount: function() {
-			this.$http.get("/static/data/products.json").then(function(resp) {
+			this.$http.get("./static/data/products.json").then(function(resp) {
 				//console.log("Success: ", resp.data);
 				//模拟筛选已选购的商品
 				var productIds = this.vHandler.productIds.sort();

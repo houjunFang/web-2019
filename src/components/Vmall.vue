@@ -38,7 +38,7 @@
 			}
 		},
 		beforeMount: function() {
-			this.$http.get("/static/data/products.json").then(function(resp) {
+			this.$http.get("./static/data/products.json").then(function(resp) {
 				//console.log("Success: ", resp.data);
 				this.products = resp.data;
 			}, function(resp) {
