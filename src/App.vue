@@ -1,22 +1,28 @@
 <template>
   <div id="app">
-    <menus></menus>
+    
     <div id="view">
     		<router-view></router-view>
     </div>
+		<listen></listen>
+		<!-- <menus></menus> -->
+		<!-- <register-view></register-view> -->
   </div>
 </template>
 
 <script>
-	import Menus from "./components/Menus";	
+	//import Menus from "./components/Menus"
+	import Listen from "./components/Listen"
+//	import RegisterView from '@/components/register/RegisterView'
 		
 	export default {
 	  name: "App",
-	  components: {Menus}
+		//components: {Menus,Listen}
+		components: {Listen}
 	}
 </script>
 
-<style>
+<style scoped>
 	#app {}
 	#view {
 		position:absolute;

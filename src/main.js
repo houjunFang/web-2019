@@ -5,9 +5,14 @@ import router from './router';
 import VueResource from 'vue-resource';
 import App from './App';
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+//启用生产消息提示，改成false阻止生产环境消息提示
 Vue.config.productionTip = true;
 
 Vue.use(VueResource);
+Vue.use(ElementUI);
 
 /* Filters */
 Vue.filter("currency", function(val) {

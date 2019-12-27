@@ -38,7 +38,7 @@
 		},
 		beforeMount: function() { //生命周期函数，监听"购物车"事件
 			var that = this;
-			that.vHandler.$on("addToCart", function(productId) {
+			that.vHandler.$on("addToCart11", function(productId) {
 				that.vHandler.productIds.push(productId);
 				that.cartCount = that.vHandler.productIds.length;
 			});

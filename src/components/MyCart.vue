@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="(product, index) in productArr">
+			<tr v-for="(product, index) in productArr" :key="index">
 				<td>{{index+1}}</td>
 				<td><img :src="product.pic" class="pure-img" /></td>
 				<td>{{product.name}}</td>
