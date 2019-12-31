@@ -23,12 +23,12 @@
 </script>
 
 <style scoped>
-	#app {}
-	#view {
+	/* #app {} */
+	/* #view {
 		position:absolute;
 		top:65px;
 		bottom:15px;
 		left:10%;
 		right:10%;
-	}
+	} */
 </style>
