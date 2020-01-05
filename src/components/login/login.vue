@@ -11,14 +11,21 @@
 <div id="content">
     <div class="tips-wrapper"><div class="tips-inner"><div class="cont-wrapper"><i class="icon-tips"></i><p>依据《网络安全法》，为保障您的账户安全和正常使用，请尽快完成手机号验证！ 新版<a href="https://about.jd.com/privacy/" class="black" target="_blank">《隐私政策》</a>已上线，将更有利于保护您的个人隐私。</p></div></div></div><div class="login-wrap">
         <div class="w">
-            <div class="login-form"><div class="tips-wrapper"><div class="tips-inner"><div class="cont-wrapper"><i class="icon-tips"></i><p>京东不会以任何理由要求您转账汇款，谨防诈骗。</p></div></div></div>
+            <div class="login-form">
+                <div class="tips-wrapper">
+                    <div class="tips-inner">
+                        <div class="cont-wrapper">
+                            <i class="icon-tips"></i><p>HJAPP不会以任何理由要求您转账汇款，谨防诈骗。</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="login-tab login-tab-l">
-                    <a href="javascript:void(0)"  class=""> 扫码登录</a>
+                    <a href="javascript:void(0)"  :class="{checked:showflag===1}" style="outline: rgb(109, 109, 109) none 0px;" @click="show(1)">账户登录</a>
                 </div>
                 <div class="login-tab login-tab-r">
-                    <a href="javascript:void(0)"  class="checked" style="outline: rgb(109, 109, 109) none 0px;">账户登录</a>
+                    <a href="javascript:void(0)"  :class="{checked:showflag===2}" style="outline: rgb(109, 109, 109) none 0px;" @click="show(2)">扫码登录</a>
                 </div>
-                <div class="login-box" style="display: block; visibility: visible;">
+                <div class="login-box" :style="{display:showflag===1?'block':'none',visibility:'visible'}">
                     <div class="mt tab-h">
                     </div>
                     <div class="msg-wrap">
@@ -67,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="qrcode-login" style="display: none; visibility: visible;">
+                <div class="qrcode-login" :style="{display:showflag===2?'block':'none',visibility:'visible'}">
                     <div class="mc">
                         <div class="qrcode-error-2016" style="left: 0px; display: none;">
                             <div class="qrcode-error-mask">
@@ -171,6 +178,52 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+<!--图片滑动验证div-->
+<div class="JDJRV-suspend-warp JDJRV-bind-suspend-wrap " id="JDJRV-wrap-loginsubmit" style="width: 304px; top: 201.67px; left: 1002.03px; height: 312.892px; display: none;">
+    <div class="JDJRV-suspend-slide">
+        <div style="" class=" JDValidate-wrap">
+            <a class="JDJRV-close" style="outline: rgb(109, 109, 109) none 0px;"></a>
+            <a class="JDJRV-arrow"></a><div class="JDJRV-slide " style="width: auto">
+                <div class="JDJRV-img-panel JDJRV-click-bind-suspend ">
+                    <div class="JDJRV-refresh" style="margin-right: 15px">
+                        <div class="JDJRV-lable-refresh">完成拼图验证</div>
+                        <div class="JDJRV-img-refresh"><span>换一张</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="JDJRV-img-wrap">
+                        <div class="JDJRV-bigimg" style="height: 108.111px;">
+                        </div>
+                        <div class="JDJRV-smallimg" style="top: 39.3833px; width: 38.6111px; left: 0px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="JDJRV-slide-bg ">
+                    <div class="JDJRV-slide-inner JDJRV-slide-text">
+                        <div class="JDJRV-slide-left"></div>
+                        <div class="JDJRV-slide-center">向右滑动完成拼图</div>
+                        <div class="JDJRV-slide-right"></div>
+                    </div>
+                    <div class="JDJRV-slide-inner JDJRV-slide-bar">
+                        <div class="JDJRV-slide-bar-left"></div>
+                        <div class="JDJRV-slide-bar-center"></div>
+                        <div class="JDJRV-slide-bar-right"></div>
+                    </div>
+                    <div class="JDJRV-slide-inner JDJRV-slide-btn">
+                        <!--<span class="JDJRV-slide-icon"></span>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 </template>
 
@@ -178,12 +231,574 @@
 
 
 <script>
-export default {};
+export default {
+  name: "login",
+  data() {
+    return {
+      showflag: 1
+    };
+  },
+  methods: {
+    show(showflag) {
+      this.showflag = showflag;
+    }
+  }
+};
 </script>
 
 
 
 <style>
+.JDValidate-wrap * {
+  margin: 0;
+  padding: 0;
+}
+.JDValidate-wrap .JDJRV-slide,
+.JDValidate-wrap .JDJRV-dsc,
+.JDValidate-wrap .JDJRV-pic-click {
+  position: relative;
+  font-family: Helvetica, Tahoma, Arial, "Microsoft YaHei", "微软雅黑",
+    sans-serif;
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+}
+.JDValidate-wrap .JDJRV-slide-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.JDValidate-wrap .JDJRV-slide-bg {
+  height: 40px;
+  position: relative;
+}
+.JDValidate-wrap .JDJRV-slide-bar {
+  display: none;
+  width: 44px;
+  border-radius: 30px;
+  -moz-transition: background 0.4s ease;
+  -o-transition: background 0.4s ease;
+  -webkit-transition: background 0.4s ease;
+  transition: background 0.4s ease;
+}
+.JDValidate-wrap .JDJRV-slide-bar .JDJRV-slide-bar-left {
+  background: url(https://ivs.jd.com/slide/i/slide-bar-left2.png) no-repeat;
+  width: 24px;
+  height: 40px;
+  float: left;
+}
+.JDValidate-wrap .JDJRV-slide-bar .JDJRV-slide-bar-center {
+  background-image: url(https://ivs.jd.com/slide/i/slide-bar-bg.png);
+  margin-left: 24px;
+  margin-right: 25px;
+  color: #fff;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.JDValidate-wrap .JDJRV-slide-bar .JDJRV-slide-bar-right {
+  display: none;
+  width: 25px;
+  height: 40px;
+  background: url(https://ivs.jd.com/slide/i/slide-bar-right2.png) no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.JDValidate-wrap .JDJRV-slide-text {
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  visibility: visible;
+  opacity: 1;
+  color: #10b2fa;
+}
+.JDValidate-wrap .JDJRV-slide-text .JDJRV-slide-left {
+  float: left;
+  width: 40px;
+  height: 40px;
+  background: url(https://ivs.jd.com/slide/i/slide-left-icon2.png) no-repeat;
+}
+.JDValidate-wrap .JDJRV-slide-text .JDJRV-slide-center {
+  background-image: url(https://ivs.jd.com/slide/i/slide-center-bg.png);
+  margin-left: 40px;
+  margin-right: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.JDValidate-wrap .JDJRV-slide-text .JDJRV-slide-right {
+  width: 40px;
+  height: 40px;
+  background: url(https://ivs.jd.com/slide/i/slide-right-icon2.png) no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.JDValidate-wrap .JDJRV-slide-text-hide {
+  visibility: hidden;
+  opacity: 0;
+}
+.JDValidate-wrap .JDJRV-slide-btn {
+  margin-top: -6px;
+  margin-left: -6px;
+  width: 55px;
+  height: 55px;
+  border-radius: 40px;
+  background: url(https://ivs.jd.com/slide/i/jd-slide-btn2.png) no-repeat;
+  cursor: pointer;
+  touch-action: none;
+}
+.JDValidate-wrap .JDJRV-slide-succ .JDJRV-slide-bar-right {
+  display: block;
+}
+.JDValidate-wrap .JDJRV-slide-succ .JDJRV-slide-btn {
+  display: none;
+}
+.JDValidate-wrap .JDJRV-slide-err .JDJRV-slide-bar .JDJRV-slide-bar-left {
+  background: url(https://ivs.jd.com/slide/i/slide-bar-err-left2.png) no-repeat;
+}
+.JDValidate-wrap .JDJRV-slide-err .JDJRV-slide-bar .JDJRV-slide-bar-center {
+  background-image: url(https://ivs.jd.com/slide/i/slide-bar-err-bg.png);
+}
+.JDValidate-wrap .JDJRV-slide-err .JDJRV-slide-btn .JDJRV-slide-icon {
+  background: url(https://ivs.jd.com/slide/i/slide-err-icon.png) center center
+    no-repeat;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-img-wrap {
+  position: relative;
+  width: 100%;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-bigimg {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-bigimg img {
+  border-radius: 3px;
+  width: 100%;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-smallimg {
+  touch-action: none;
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 50px;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-smallimg img {
+  width: 100%;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-refresh {
+  height: 25px;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-lable-refresh {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 59%;
+  float: left;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-img-refresh {
+  position: relative;
+  float: right;
+  padding-right: 0;
+  height: 20px;
+  cursor: pointer;
+  color: #06c;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-img-refresh div {
+  background: url(https://ivs.jd.com/slide/i/refresh2.png) center center
+    no-repeat;
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+.JDValidate-wrap .JDJRV-img-panel .JDJRV-img-refresh span {
+  float: right;
+}
+.JDValidate-wrap .JDJRV-float {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  visibility: hidden;
+}
+.JDValidate-wrap .JDJRV-float-hover {
+  visibility: visible;
+  bottom: 50px;
+  opacity: 1;
+}
+.JDValidate-wrap .JDJRV-embed,
+.JDValidate-wrap .JDJRV-bind,
+.JDValidate-wrap .JDJRV-popup,
+.JDValidate-wrap .JDJRV-click-popup,
+.JDValidate-wrap .JDJRV-click-suspend,
+.JDValidate-wrap .JDJRV-click-bind-suspend {
+  margin-bottom: 10px;
+  position: relative;
+  width: 100%;
+  visibility: visible;
+}
+.JDValidate-wrap .JDJRV-slide-intelligence .JDJRV-slide-text {
+  cursor: pointer;
+  color: #45494c;
+}
+.JDValidate-wrap .JDJRV-slide-intelligence .JDJRV-slide-text:hover {
+  color: #1991fa;
+}
+.JDValidate-wrap .JRJRV-animate-el {
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.JDValidate-wrap .JDJRV-bottom-slide-hide {
+  margin-bottom: 0;
+}
+.JDValidate-wrap .JDJRV-hide {
+  display: none;
+}
+.JDJRV-pop-wrap {
+  position: fixed;
+  z-index: 2147483647;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  display: none;
+}
+.JDJRV-pop-wrap .JDJRV-pop-bg {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+.JDJRV-pop-wrap .JDJRV-pop-content {
+  position: absolute;
+  margin-top: -121px;
+  top: 50%;
+  left: 50%;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: white;
+  padding: 15px 10px 10px 10px;
+}
+.JDJRV-pop-wrap .JDJRV-close {
+  z-index: 2147483647;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-image: url(https://ivs.jd.com/slide/i/x.png);
+}
+.JDJRV-click-warp {
+  border: 1px solid #409eff;
+  border-radius: 2px;
+  background: white;
+  height: 40px;
+  color: #409eff;
+  font-size: 14px;
+}
+.JDJRV-click-warp .JDJRV-click-img {
+  float: left;
+  width: 30px;
+  margin: 5px;
+}
+.JDJRV-click-warp .JDJRV-click-text {
+  float: left;
+  line-height: 40px;
+}
+.JDJRV-click-success {
+  border-color: #52ccba;
+  background-color: #d2f4ef;
+  color: #52ccba;
+}
+.JDJRV-click-success .JDJRV-click-img {
+  width: 12px;
+  margin: 15px 10px;
+}
+.JDJRV-suspend-warp {
+  position: relative;
+}
+.JDJRV-suspend-warp .JDJRV-suspend-slide,
+.JDJRV-suspend-warp .JDJRV-suspend-i-dsc,
+.JDJRV-suspend-warp .JDJRV-suspend-i-pic-click {
+  display: none;
+  line-height: 1.5;
+  text-align: left;
+  position: absolute;
+  left: 0;
+  bottom: 38px;
+  background-color: #fff;
+  z-index: 2147483647;
+  box-shadow: 0 0 2px 2px #eee;
+  border: 1px solid #eee;
+  width: auto;
+  height: auto;
+  padding: 18px 12px;
+}
+.JDJRV-suspend-warp .JDJRV-close {
+  z-index: 2147483647;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-image: url(https://ivs.jd.com/slide/i/x.png);
+}
+.JDJRV-suspend-warp .JDJRV-arrow {
+  z-index: 2147483647;
+  display: block;
+  position: absolute;
+  background-image: url(https://ivs.jd.com/slide/i/tips.gif);
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 8px;
+  background-position: 0 -8px;
+  overflow: hidden;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.JDJRV-suspend-warp .JDJRV-suspend-click {
+  position: relative;
+  border: 1px solid #ddd;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+.JDJRV-suspend-warp .JDJRV-suspend-click:hover {
+  border-color: #666;
+}
+.JDJRV-suspend-warp .JDJRV-suspend-click-success {
+  background-color: #f3fded;
+  border: 1px solid #7b5;
+  color: #7b5;
+  cursor: auto;
+}
+.JDJRV-suspend-warp .JDJRV-suspend-click-success:hover {
+  border-color: #7b5;
+}
+.JDJRV-bind-suspend-wrap,
+.JDJRV-i-dsc-wrap,
+.JDJRV-i-pic-click-wrap {
+  position: absolute;
+  display: none;
+}
+.JDJRV-bind-suspend-wrap .JDJRV-suspend-slide,
+.JDJRV-bind-suspend-wrap .JDJRV-suspend-i-dsc,
+.JDJRV-bind-suspend-wrap .JDJRV-suspend-i-pic-click,
+.JDJRV-i-dsc-wrap .JDJRV-suspend-slide,
+.JDJRV-i-dsc-wrap .JDJRV-suspend-i-dsc,
+.JDJRV-i-dsc-wrap .JDJRV-suspend-i-pic-click,
+.JDJRV-i-pic-click-wrap .JDJRV-suspend-slide,
+.JDJRV-i-pic-click-wrap .JDJRV-suspend-i-dsc,
+.JDJRV-i-pic-click-wrap .JDJRV-suspend-i-pic-click {
+  position: relative;
+  display: block;
+  bottom: 0;
+}
+.JDJRV-dsc .JDJRV-question {
+  height: 25px;
+}
+.JDJRV-dsc .JDJRV-question .JDJRV-question-lable {
+  white-space: nowrap;
+  width: 77%;
+  float: left;
+}
+.JDJRV-dsc .JDJRV-question .JDJRV-question-refresh {
+  position: absolute;
+  right: 0;
+  height: 20px;
+  cursor: pointer;
+  color: #06c;
+}
+.JDJRV-dsc .JDJRV-question .JDJRV-question-refresh div {
+  background: url(https://ivs.jd.com/slide/i/refresh2.png) center center
+    no-repeat;
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+.JDJRV-dsc .JDJRV-question .JDJRV-question-refresh span {
+  float: right;
+}
+.JDJRV-dsc .JDJRV-dsc-result {
+  display: none;
+  touch-action: none;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+.JDJRV-dsc .JDJRV-dsc-result-succ {
+  display: block;
+  background: url(https://ivs.jd.com/slide/i/succ-icon.png) center center
+    no-repeat;
+  background-size: 100%;
+}
+.JDJRV-dsc .JDJRV-dsc-result-err {
+  display: block;
+  background: url(https://ivs.jd.com/slide/i/err-icon.png) center center
+    no-repeat;
+  background-size: 100%;
+}
+.JDJRV-pic-click {
+  overflow: hidden;
+}
+.JDJRV-pic-click .JDJRV-question {
+  height: 25px;
+}
+.JDJRV-pic-click .JDJRV-question .JDJRV-question-lable {
+  white-space: nowrap;
+  width: 50%;
+  float: left;
+}
+.JDJRV-pic-click .JDJRV-question .JDJRV-question-lable img {
+  margin-left: 10px;
+  height: 16px;
+  vertical-align: middle;
+}
+.JDJRV-pic-click .JDJRV-question .JDJRV-question-refresh {
+  position: absolute;
+  right: 0;
+  height: 20px;
+  cursor: pointer;
+  color: #06c;
+}
+.JDJRV-pic-click .JDJRV-question .JDJRV-question-refresh div {
+  background: url(https://ivs.jd.com/slide/i/refresh2.png) center center
+    no-repeat;
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+.JDJRV-pic-click .JDJRV-question .JDJRV-question-refresh span {
+  float: right;
+}
+.JDJRV-pic-click .JDJRV-oper .JDJRV-seq {
+  touch-action: none;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #5ebd69;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 24px;
+  text-align: center;
+  line-height: 24px;
+  border: 2px solid #fff;
+  cursor: default;
+  display: none;
+}
+.JDJRV-pic-click .JDJRV-pic-click-result {
+  position: absolute;
+  color: #fff;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  bottom: -30px;
+  width: 100%;
+  transition: bottom 200ms linear;
+}
+.JDJRV-pic-click .JDJRV-pic-click-result-succ {
+  display: block;
+  background-color: #5ebd69;
+  background-color: rgba(94, 189, 105, 0.7);
+}
+.JDJRV-pic-click .JDJRV-pic-click-result-err {
+  display: block;
+  background: #f21f10;
+  background: rgba(242, 31, 16, 0.7);
+}
+.JDJRV-pop-content .JDJRV-img-panel {
+  width: auto;
+  *+width: 360px;
+}
+.JDJRV-pop-content .JDJRV-img-panel .JDJRV-img-wrap {
+  width: 360px;
+}
+.JDJRV-suspend-warp .JDJRV-suspend-slide,
+.JDJRV-suspend-warp .JDJRV-suspend-i-dsc {
+  *+overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .JDJRV-pop-content {
+    max-width: 80%;
+  }
+  .JDJRV-pop-content .JDJRV-img-panel .JDJRV-img-wrap {
+    width: 100%;
+  }
+}
+.JDJRV-joybuy .JDJRV-slide-bar .JDJRV-slide-bar-left {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/slide-bar-left2.png)
+    no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-slide-bar .JDJRV-slide-bar-center {
+  background-image: url(https://static.joybuy.com/risk-cdn/iv/images/slide-bar-bg.png) !important;
+}
+.JDJRV-joybuy .JDJRV-slide-bar .JDJRV-slide-bar-right {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/slide-bar-right2.png)
+    no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-slide-left {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/slide-left-icon2.png)
+    no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-slide-center {
+  background-image: url(https://static.joybuy.com/risk-cdn/iv/images/slide-center-bg.png) !important;
+}
+.JDJRV-joybuy .JDJRV-slide-right {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/slide-right-icon2.png)
+    no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-slide-btn {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/jd-slide-btn2.png)
+    no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-slide-err .JDJRV-slide-bar-left {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/slide-bar-err-left2.png)
+    no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-slide-err .JDJRV-slide-bar-center {
+  background-image: url(https://static.joybuy.com/risk-cdn/iv/images/slide-bar-err-bg.png) !important;
+}
+.JDJRV-joybuy .JDJRV-slide-err .JDJRV-slide-icon {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/slide-err-icon.png)
+    center center no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-img-refresh div {
+  background: url(https://static.joybuy.com/risk-cdn/iv/images/refresh2.png)
+    center center no-repeat !important;
+}
+.JDJRV-joybuy .JDJRV-close {
+  background-image: url(https://static.joybuy.com/risk-cdn/iv/images/x.png) !important;
+}
+.JDJRV-joybuy .JDJRV-arrow {
+  background-image: url(https://static.joybuy.com/risk-cdn/iv/images/tips.gif) !important;
+}
+
 a,
 address,
 b,
@@ -3015,8 +3630,7 @@ input:-webkit-autofill {
   width: 38px;
   height: 38px;
   border-right: 1px solid #bdbdbd;
-  background: url(/static/img/css-img-1.png)
-    no-repeat;
+  background: url(/static/img/css-img-1.png) no-repeat;
 }
 .form .item .name-label {
   background-position: 0 0;
@@ -3269,7 +3883,6 @@ input:-webkit-autofill {
   width: 266px;
   height: 100px;
 }
-
 .form .updata .up-one {
   position: absolute;
   right: 16px;
@@ -3353,8 +3966,7 @@ input:-webkit-autofill {
   width: 16px;
   height: 16px;
   overflow: hidden;
-  background: url(/static/img/css-img-1.png) -104px -49px
-    no-repeat;
+  background: url(/static/img/css-img-1.png) -104px -49px no-repeat;
 }
 .login-form .msg-warn {
   position: relative;
@@ -3374,8 +3986,7 @@ input:-webkit-autofill {
   width: 16px;
   height: 17px;
   overflow: hidden;
-  background: url(/static/img/css-img-1.png) -104px -24px
-    no-repeat;
+  background: url(/static/img/css-img-1.png) -104px -24px no-repeat;
 }
 .login-form .login-box {
   width: 306px;
@@ -3555,8 +4166,7 @@ input:-webkit-autofill {
   width: 16px;
   height: 16px;
   overflow: hidden;
-  background: url(/static/img/css-img-1.png) -104px -49px
-    no-repeat;
+  background: url(/static/img/css-img-1.png) -104px -49px no-repeat;
 }
 .login-form .qrcode-login .qrcode-error-2016 {
   display: none;
@@ -3832,8 +4442,7 @@ div.safetips {
   width: 19px;
   height: 18px;
   display: block;
-  background: url(/static/img/QQ-weixin.png)
-    no-repeat;
+  background: url(/static/img/QQ-weixin.png) no-repeat;
   margin: 0 auto;
   position: absolute;
   float: left;
@@ -3866,8 +4475,7 @@ div.safetips {
   margin-left: 10px;
   overflow: hidden;
   vertical-align: middle;
-  background: url(/static/img/css-img-1.png) -104px -100px
-    no-repeat;
+  background: url(/static/img/css-img-1.png) -104px -100px no-repeat;
 }
 .coagent .more-slide dd {
   position: absolute;
@@ -3928,8 +4536,7 @@ div.safetips {
   width: 16px;
   height: 16px;
   overflow: hidden;
-  background: url(/static/img/css-img-1.png) -104px -75px
-    no-repeat;
+  background: url(/static/img/css-img-1.png) -104px -75px no-repeat;
   vertical-align: middle;
   margin-right: 5px;
 }
@@ -3967,7 +4574,8 @@ div.safetips {
   padding-left: 32px;
   *display: inline-block;
   _display: inline;
-} /* user-passport/1.0.0 login-banner.css Date:2017-11-02 15:12:48 */
+}
+/* user-passport/1.0.0 login-banner.css Date:2017-11-02 15:12:48 */
 .login-wrap {
   position: relative;
   height: 475px;
@@ -3990,7 +4598,8 @@ div.safetips {
 .login-wrap .login-form {
   float: right;
   top: 10px;
-} /* user-passport/1.0.0 safe-step.css Date:2016-04-15 13:37:33 */
+}
+/* user-passport/1.0.0 safe-step.css Date:2016-04-15 13:37:33 */
 .step {
   width: 350px;
   margin: 0 auto;

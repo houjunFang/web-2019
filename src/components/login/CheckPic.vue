@@ -1,30 +1,25 @@
 <template>
   <div id="puzzle" ref="puzzle" style="display:inline-block;">
   <!-- :style="'padding:' + 16*scale + 'px ' + 16*scale + 'px ' + 28*scale + 'px;border-radius:'+16*scale+'px;'" -->
-    <div class="puzzle-container"
-     >
+    <div class="puzzle-container">
       <div :style="'position:relative;overflow:hidden;width:'+ dataWidth +'px;'">
         <div :style="'position:relative;width:' + dataWidth + 'px;height:' + dataHeight + 'px;'">
           <img
             id="scream"
             ref="scream"
             :src="imgRandom"
-            :style="'width:' + dataWidth + 'px;height:' + dataHeight + 'px;'"
-          />
+            :style="'width:' + dataWidth + 'px;height:' + dataHeight + 'px;'"/>
           <canvas id="puzzle-box" ref="puzzleBox" :width="dataWidth" :height="dataHeight"></canvas>
         </div>
         <div
           class="puzzle-lost-box"
-          :style="'left:' + left_Num + 'px;width:' + dataWidth + 'px;height:' + dataHeight + 'px;'"
-        >
+          :style="'left:' + left_Num + 'px;width:' + dataWidth + 'px;height:' + dataHeight + 'px;'">
           <canvas id="puzzle-shadow" ref="puzzleShadow" :width="dataWidth" :height="dataHeight"></canvas>
           <canvas id="puzzle-lost" ref="puzzleLost" :width="dataWidth" :height="dataHeight"></canvas>
         </div>
-        <p
-          class="ver-tips"
+        <p class="ver-tips"
           ref="verTips"
-          :style="'height: '+22*scale+'px;line-height:'+22*scale+'px;bottom: ' + (displayTips==true ? 0 : -22*scale ) +'px;font-size: '+12*scale+'px;'"
-        >
+          :style="'height: '+22*scale+'px;line-height:'+22*scale+'px;bottom: ' + (displayTips==true ? 0 : -22*scale ) +'px;font-size: '+12*scale+'px;'">
           <template v-if="verification">
             <span :style="'color:#42ca6b;line-height:'+ 22*scale+'px;'">验证通过</span>
             <span :style="'margin-left:'+4*scale+'px;line-height:'+ 22*scale+'px;'">哇喔,怪物吃了拼图,快去登录吧~</span>
